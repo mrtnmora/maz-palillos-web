@@ -1,12 +1,15 @@
-# Pendientes de lanzamiento
+﻿# Pendientes de lanzamiento
 
-- [ ] Confirmar WhatsApp, correo y ubicación.
-- [ ] Validar nombres y especificaciones de cada formato con el cliente.
-- [ ] Integrar el archivo definitivo del logotipo.
-- [ ] Revisar fotografías y catálogo con el cliente.
-- [ ] Probar vistas Slides/Grid y galería en celular.
-- [ ] Registrar dominio en cuenta del cliente.
-- [ ] Preparar despliegue estático y comprobar compatibilidad con Cloudflare.
-- [ ] Crear tablero GitHub Projects: Pendiente / En progreso / En revisión / Terminado.
+- [ ] Confirmar WhatsApp, correo, teléfono y ubicación en src/data/site.ts.
+- [ ] Aprobar textos, secuencia de fabricación y aplicaciones.
+- [ ] Confirmar dimensiones, presentaciones y detalles de producto.
+- [ ] Integrar logotipo y favicon oficiales.
+- [ ] Agregar video industrial, poster y fotografías de planta (docs/MEDIA.md).
+- [ ] Agregar catálogo completo y habilitar su descarga.
+- [ ] Configurar SITE_URL con el dominio real antes de compilar para producción.
+- [ ] Revisar en navegador: 360, 390, 768, 1024 y 1440 px; zoom 200 %.
+- [ ] Probar teclado, menú móvil, galerías, consola, video fallido y movimiento reducido.
+- [ ] Revisar en dispositivo móvil real y conexión limitada con el video final.
+- [ ] Aprobar contenido y publicar dist/ en el alojamiento seleccionado.
 
-Estas tareas son un listado local; no se han creado Issues ni un tablero en GitHub.
+Estas tareas son locales; no se crearon Issues, tableros ni despliegues remotos.

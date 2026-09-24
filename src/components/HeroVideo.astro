@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import { site } from '../data/site';
+import { products } from '../data/products';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true">
+    {site.media.posterEnabled ? <img src={site.media.poster} alt="" fetchpriority="high" class="hero-image" /> : <Image src={products[0].images[0]} widths={[640, 1200, 1600]} sizes="100vw" width={1600} format="webp" alt="" loading="eager" fetchpriority="high" class="hero-image" />}
+    {site.media.videoEnabled && <video id="hero-video" muted loop playsinline preload="none" poster={site.media.posterEnabled ? site.media.poster : undefined} aria-hidden="true"><source data-src={site.media.webm} type="video/webm" /><source data-src={site.media.mp4} type="video/mp4" /></video>}
+  </div>
+  <div class="hero-shade"></div>
+  <div class="container hero-content"><p class="eyebrow light"><span class="red-line"></span>{site.hero.eyebrow}</p><h1 id="hero-title">{site.hero.title}</h1><p class="hero-description">{site.hero.description}</p><a class="button" href="#productos">{site.hero.cta}<span aria-hidden="true">↗</span></a></div>
+  <div class="container hero-bottom"><span>MADERA · PRECISIÓN · POSIBILIDADES</span><button id="video-toggle" hidden>Pausar video</button><a href="#nosotros" aria-label="Descubrir MAZ">Descubre MAZ <span aria-hidden="true">↓</span></a></div>
+</section>
+<script>
+  const video = document.querySelector<HTMLVideoElement>('#hero-video');
+  const button = document.querySelector<HTMLButtonElement>('#video-toggle');
+  if (video && button) {
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    let loaded = false;
+    const play = async () => {
+      if (!loaded) { video.querySelectorAll('source').forEach(source => { source.src = source.dataset.src!; }); video.load(); loaded = true; }
+      try { await video.play(); } catch { video.classList.remove('is-playing'); }
+    };
+    video.addEventListener('playing', () => { video.classList.add('is-playing'); button.hidden = false; button.textContent = 'Pausar video'; });
+    video.addEventListener('pause', () => { button.textContent = 'Reproducir video'; });
+    video.addEventListener('error', () => { video.classList.remove('is-playing'); button.hidden = true; });
+    button.addEventListener('click', () => { if (video.paused) void play(); else video.pause(); });
+    motion.addEventListener('change', () => { if (motion.matches) { video.pause(); video.classList.remove('is-playing'); button.hidden = true; } else if (!connection?.saveData) void play(); });
+    if (!motion.matches && !connection?.saveData) { video.autoplay = true; void play(); }
+  }
+</script>

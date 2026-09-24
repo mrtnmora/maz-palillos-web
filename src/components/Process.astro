@@ -1,0 +1,4 @@
+---
+import { processSteps } from '../data/site';
+---
+<section id="proceso" class="process section" aria-labelledby="process-title"><div class="container"><div class="section-heading"><div><p class="eyebrow">02 / EL PROCESO</p><h2 id="process-title">La forma cambia.<br />El cuidado permanece.</h2></div><p>De la madera al palillo.<br />Un recorrido por la fabricación.</p></div><ol class="process-grid">{processSteps.map(([title, description], index) => <li><span class="step-number">{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></li>)}</ol></div></section>

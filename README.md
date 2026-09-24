@@ -1,59 +1,68 @@
-# MAZ+ Palillos de madera
+﻿# MAZ · Palillos de madera
 
-Sitio de catálogo en React, TypeScript y Vinext. Incluye 12 fotografías reales,
-vistas Slides/Grid, ficha técnica PDF y sección de contacto pendiente de datos.
+Sitio corporativo B2B estático en Astro y TypeScript, con CSS nativo y JavaScript
+mínimo para menú móvil y video. Sin React, backend, base de datos ni comercio.
 
-## Desarrollo en Windows
+## Desarrollo
 
-Requisitos: Node.js 24 LTS, npm (incluido), Git y Visual Studio Code.
-Desde la carpeta que contiene package.json:
+Node.js 24 LTS y npm. Desde la raíz:
 
 ```powershell
 npm.cmd ci
 npm.cmd run dev
 ```
 
-Abre la dirección Local que indique la terminal. Para detener: Ctrl+C.
-
-## Validar compilación
+Abre http://127.0.0.1:4321. Para compilar y revisar la salida estática:
 
 ```powershell
 npm.cmd run build
+npm.cmd run preview
 ```
 
-## Archivos principales
+`build` ejecuta primero el verificador Astro/TypeScript. Publica únicamente `dist/`
+en un alojamiento estático; `preview` es una herramienta de revisión local.
+Configura `SITE_URL` con el dominio real en el entorno de compilación. Sin esta
+variable se omiten los enlaces canónicos y URLs sociales absolutas.
 
-- app/page.tsx: textos, productos y contacto.
-- app/globals.css: diseño y colores.
-- public/products/: fotos.
-- public/palo-elotero.pdf: ficha técnica.
+## Estructura activa
 
-## Subir al repositorio vacío
+- `src/pages/index.astro`: composición de la página.
+- `src/layouts/Layout.astro`: HTML, idioma, metadatos y enlace de salto.
+- `src/components/`: Header, HeroVideo, About, Process, Products, ProductCard,
+  CatalogCTA, Contact, Footer y Brand.
+- `src/data/site.ts`: textos principales, proceso, navegación, contactos y medios.
+- `src/data/products.ts`: cinco familias, fotografías y especificaciones.
+- `src/styles/global.css`: estilos, breakpoints y movimiento reducido.
+- `src/assets/images/products/`: originales optimizados por Astro durante build.
+- `public/`: video, poster, documentos y originales históricos.
+- `legacy/`: implementación React/Vinext anterior conservada como referencia,
+  excluida de la compilación y del despliegue.
 
-Desde esta carpeta:
+## Recursos pendientes
 
-```powershell
-git init -b main
-git add .
-git commit -m "Initial MAZ website"
-git remote add origin https://github.com/mrtnmora/maz-palillos-web.git
-git push -u origin main
-```
+Consulta [la guía de medios](docs/MEDIA.md) para rutas exactas y activación.
+El hero usa una fotografía real existente hasta recibir el video industrial.
+El catálogo completo se muestra como próximo; la ficha de palo elotero sigue
+siendo descargable. Los contactos vacíos no generan enlaces ficticios.
 
-Si Git pide identidad, configura user.name y user.email con tus datos antes del commit.
-Si el repositorio remoto contiene archivos, no fuerces el push: integra primero ese historial.
+Antes del lanzamiento deben aprobarse logo, textos, proceso, medidas,
+presentaciones, contactos, dominio, video y catálogo. Los textos de fabricación
+son una base editorial para revisión de MAZ, sin certificaciones ni capacidades
+cuantificadas inventadas.
 
-## Seguimiento
+## Accesibilidad y comportamiento
 
-Usar ramas por cambio, por ejemplo feature/contacto, y pull requests hacia main.
-Los pendientes iniciales están en docs/PENDIENTES.md.
+Navegación semántica, enlaces de salto, foco visible y menú con `aria-expanded`,
+Escape y cierre al navegar. Sin JavaScript, la navegación sigue visible. Galerías
+con `<details>` nativo. Video con fallback, pausa accesible, movimiento reducido
+y ahorro de datos. Imágenes WebP responsive, lazy loading salvo el hero y fuentes
+del sistema. La ficha PDF original no se ha auditado por accesibilidad documental.
 
-## Alcance de esta exportación
+## Migración
 
-Parte del código publicado en Sites (commit 5847446475b8873d6d2c156970a073b068755708).
-Los comandos de desarrollo y compilación fueron adaptados para no depender de Bash
-ni de la infraestructura privada de Sites. No incluye node_modules, credenciales,
-configuración privada de hospedaje ni el historial Git anterior: inicia una base nueva.
-No modifica ni se sincroniza automáticamente con el sitio alojado en Sites.
-La conexión de despliegue a Cloudflare se configura en una etapa posterior.
-Los datos de contacto deben confirmarse antes de publicar para clientes.
+Se preservaron las 12 fotografías, las cinco familias, la ficha PDF y el acento
+rojo MAZ+. La vista Slides/Grid se sustituyó por tarjetas y galerías sin framework
+cliente. Las dependencias antiguas se retiraron del proyecto activo; sus fuentes
+se conservaron en `legacy/`. No existe sincronización automática con Sites.
+
+Referencia: [configuración de Astro](https://docs.astro.build/en/reference/configuration-reference/).

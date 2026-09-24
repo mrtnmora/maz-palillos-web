@@ -1,0 +1,5 @@
+---
+import Brand from './Brand.astro';
+import { navigation, site } from '../data/site';
+---
+<footer class="footer"><div class="container"><div class="footer-top"><Brand /><nav aria-label="Navegación del pie">{navigation.map(item => <a href={item.href}>{item.label}</a>)}<a href="#catalogo">Catálogo</a></nav></div><div class="footer-bottom"><p>© {new Date().getFullYear()} MAZ · Palillos de madera</p><p>{site.contact.email ? <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> : 'Contacto · Por confirmar'}</p><a href="#inicio">Volver al inicio ↑</a></div></div></footer>

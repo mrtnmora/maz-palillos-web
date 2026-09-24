@@ -1,0 +1,5 @@
+---
+import ProductCard from './ProductCard.astro';
+import { products } from '../data/products';
+---
+<section id="productos" class="section container" aria-labelledby="products-title"><div class="section-heading"><div><p class="eyebrow">03 / NUESTROS PRODUCTOS</p><h2 id="products-title">Cada idea tiene<br />su formato.</h2></div><p>Explora nuestras familias de productos.<br />Consulta medidas y presentaciones con nuestro equipo.</p></div><div class="product-grid">{products.map((product, index) => <ProductCard product={product} index={index} />)}<aside class="product-help"><span class="eyebrow">HABLEMOS DE TU PROYECTO</span><h3>¿Qué necesita<br />tu producción?</h3><p>Cuéntanos la aplicación, las medidas y la cantidad que buscas.</p><a class="text-link" href="#contacto">Contactar a MAZ <span aria-hidden="true">↗</span></a></aside></div></section>

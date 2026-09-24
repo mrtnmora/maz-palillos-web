@@ -1,0 +1,21 @@
+---
+import Brand from './Brand.astro';
+import { navigation } from '../data/site';
+---
+<header class="header"><div class="container header-inner"><Brand /><button class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" hidden>Menú <span aria-hidden="true">☰</span></button><nav id="main-navigation" aria-label="Navegación principal">{navigation.map(item => <a href={item.href}>{item.label}</a>)}<a class="nav-cta" href="#catalogo">Catálogo <span aria-hidden="true">↗</span></a></nav></div></header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle')!;
+  const nav = document.querySelector<HTMLElement>('#main-navigation')!;
+  toggle.hidden = false;
+  nav.classList.add('enhanced');
+  const close = () => { toggle.setAttribute('aria-expanded', 'false'); nav.classList.remove('is-open'); };
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open);
+  });
+  nav.addEventListener('click', event => { if ((event.target as HTMLElement).closest('a')) close(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { close(); toggle.focus(); }
+  });
+  matchMedia('(min-width: 761px)').addEventListener('change', close);
+</script>

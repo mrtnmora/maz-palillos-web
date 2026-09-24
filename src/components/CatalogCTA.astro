@@ -1,0 +1,4 @@
+---
+import { site } from '../data/site';
+---
+<section id="catalogo" class="catalog-cta" aria-labelledby="catalog-title"><div class="container catalog-inner"><div><p class="eyebrow light">EL SIGUIENTE PASO</p><h2 id="catalog-title">Conoce nuestra línea<br />de productos.</h2></div><div class="catalog-actions">{site.catalog.available ? <a class="button button-white" href={site.catalog.path} download>Descargar catálogo <span aria-hidden="true">↓</span></a> : <><span class="catalog-status">Catálogo completo · Próximamente</span><a class="button button-white" href="#contacto">Consultar productos <span aria-hidden="true">↗</span></a></>}<a class="catalog-technical" href="/palo-elotero.pdf" download>Descargar ficha: palo elotero (PDF) ↓</a></div></div></section>
